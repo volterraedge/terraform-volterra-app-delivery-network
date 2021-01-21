@@ -186,7 +186,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: volterrademos/cartservice:latest
+        image: gcr.io/google-samples/microservices-demo/cartservice:v0.1.2
         ports:
         - containerPort: 7070
         env:
@@ -563,12 +563,12 @@ spec:
       restartPolicy: Always
       containers:
       - name: main
-        image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.0
+        image: docker.io/madhukar32/load-generator:generic_v2
         env:
         - name: FRONTEND_ADDR
-          value: "frontend:80"
+          value: ${frontend_domain_url}
         - name: USERS
-          value: "10"
+          value: "5"
         resources:
           requests:
             cpu: 300m
