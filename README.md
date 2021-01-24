@@ -1,7 +1,7 @@
 # terraform-volterra-app-delivery-network
 
 [![Lint Status](https://github.com/volterraedge/terraform-volterra-app-delivery-network/workflows/Lint/badge.svg)](https://github.com/volterraedge/terraform-volterra-app-delivery-network/actions)
-[![LICENSE](https://img.shields.io/github/license/volterraedge/terraform-volterra-app-delivery-network)](https://github.com/volterraedge/terraform-volterra-app-delivery-network/blob/main/LICENSE
+[![LICENSE](https://img.shields.io/github/license/volterraedge/terraform-volterra-app-delivery-network)](https://github.com/volterraedge/terraform-volterra-app-delivery-network/blob/main/LICENSE)
 
 This is a terraform module to create Volterra's Application Delivery Network usecase. Read the [Application Delivery Network usecase guide](https://volterra.io/docs/quick-start/app-delivery-network) to learn more.
 
