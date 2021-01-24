@@ -17,7 +17,7 @@ variable "volterra_namespace" {
 
 variable "app_domain" {
   type        = string
-  description = "App domain name, whose sub domain is delegated and managed by Volterra"
+  description = "FQDN for the app. If you have delegated domain `prod.example.com`, then your app_domain can be `<app_name>.prod.example.com`"
 }
 
 variable "enable_hsts" {
