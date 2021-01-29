@@ -56,7 +56,7 @@ resource "null_resource" "apply_manifest" {
     manifest_sha1 = sha1(local.hipster_manifest_content)
   }
   provisioner "local-exec" {
-    command = "echo $KUBECONFIG; kubectl apply -f _output/hipster-adn.yaml"
+    command = "kubectl apply -f _output/hipster-adn.yaml"
     environment = {
       KUBECONFIG = format("%s/_output/hipster_adn_vk8s_kubeconfig", path.root)
     }

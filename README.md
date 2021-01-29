@@ -7,15 +7,23 @@ This is a terraform module to create Volterra's Application Delivery Network use
 
 ---
 
-## Assumptions:
-
-* You already have signed up for Volterra account. If not, use this link to [signup](https://console.ves.volterra.io/signup/)
-
-* At the current state, this module requires the user to have team/organization plan of Volterra account
-
----
-
 ## Prerequisites
+
+### Volterra Account
+
+* Signup For Volterra Account
+
+  If you don't have a Volterra account. Please follow this link to [signup](https://console.ves.volterra.io/signup/)
+
+* Download Volterra API credentials file
+
+  Follow [how to generate API Certificate](https://volterra.io/docs/how-to/user-mgmt/credentials) to create API credentials
+
+* Setup domain delegation
+
+  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation.
+
+### Command Line Tools
 
 * Install terraform
 
@@ -29,26 +37,28 @@ This is a terraform module to create Volterra's Application Delivery Network use
   $ brew upgrade hashicorp/tap/terraform
   ```
 
-* Download Volterra API credentials file
-
-  Follow the steps under section `Generate API Certificate` from [how to manage credentials doc](https://volterra.io/docs/how-to/user-mgmt/credentials)
-
-
-* Export the API certificate password as environment variable
-
+* Export the API certificate password as environment variable, this is needed for volterra provider to work
   ```bash
   export VES_P12_PASSWORD=<your credential password>
   ```
-
-* Setup domain delegation
-
-  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation.
 
 ---
 
 # Usage Example
 
 ```hcl
+variable "api_url" {
+  #-- UNCOMMENT FOR TEAM OR ORG TENANTS
+  # default = "https://<TENANT-NAME>.console.ves.volterra.io/api"
+  #--- UNCOMMENT FOR INDIVIDUAL/FREEMIUM
+  # default = "https://console.ves.volterra.io/api"
+}
+
+# This points the absolute path of the api credentials file you downloaded from Volterra
+variable "api_p12_file" {
+  default = "acmecorp.console.api-creds.p12"
+}
+
 terraform {
   required_providers {
     volterra = {
@@ -58,14 +68,6 @@ terraform {
   }
 }
 
-variable "api_url" {
-  default = "https://acmecorp.console.ves.volterra.io/api"
-}
-
-variable "api_p12_file" {
-  default = "acmecorp.console.api-creds.p12"
-}
-
 provider "volterra" {
   api_p12_file = var.api_p12_file
   url          = var.api_url
@@ -73,14 +75,14 @@ provider "volterra" {
 
 module "app-delivery-network" {
   source             = "volterraedge/app-delivery-network/volterra"
-  version            = "0.0.1"
+  version            = "0.0.2"
   adn_name           = var.name
   volterra_namespace = var.name
   app_domain         = var.domain_name
 }
 
 output "adn_app_url" {
-  value = module.app-delivery-network.adn_app_url
+  value = module.app-delivery-network.app_url
 }
 ```
 ---
@@ -118,5 +120,5 @@ output "adn_app_url" {
 
 | Name | Description |
 |------|-------------|
-| adn\_app\_url | Domain VIP to access the application, running on ADN |
+| app\_url | Domain VIP to access the application, running on ADN |
 
