@@ -186,7 +186,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: gcr.io/google-samples/microservices-demo/cartservice:v0.1.2
+        image: gcr.io/solutions-team-280017/cartservice:latest
         ports:
         - containerPort: 7070
         env:
