@@ -7,6 +7,12 @@ This is a terraform module to create Volterra's Application Delivery Network use
 
 ---
 
+## Overview
+
+![Image of ADN Usecase](https://volterra.io/static/15a56da8dbb948319f81c4d99cc36cea/3353d/top-nea-new.webp)
+
+---
+
 ## Prerequisites
 
 ### Volterra Account
@@ -48,7 +54,7 @@ This is a terraform module to create Volterra's Application Delivery Network use
 
 ```hcl
 variable "api_url" {
-  #-- UNCOMMENT FOR TEAM OR ORG TENANTS
+  #--- UNCOMMENT FOR TEAM OR ORG TENANTS
   # default = "https://<TENANT-NAME>.console.ves.volterra.io/api"
   #--- UNCOMMENT FOR INDIVIDUAL/FREEMIUM
   # default = "https://console.ves.volterra.io/api"
@@ -56,7 +62,7 @@ variable "api_url" {
 
 # This points the absolute path of the api credentials file you downloaded from Volterra
 variable "api_p12_file" {
-  default = "acmecorp.console.api-creds.p12"
+  default = "path/to/your/api-creds.p12"
 }
 
 terraform {
