@@ -65,11 +65,23 @@ variable "api_p12_file" {
   default = "path/to/your/api-creds.p12"
 }
 
+variable "app_fqdn" {}
+
+variable "namespace" {
+  default = ""
+}
+
+variable "name" {}
+
+locals{
+  namespace = var.namespace != "" ? var.namespace : var.name
+}
+
 terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.0.5"
+      version = "0.0.6"
     }
   }
 }
@@ -81,10 +93,10 @@ provider "volterra" {
 
 module "app-delivery-network" {
   source             = "volterraedge/app-delivery-network/volterra"
-  version            = "0.0.2"
+  version            = "0.0.3"
   adn_name           = var.name
-  volterra_namespace = var.name
-  app_domain         = var.domain_name
+  volterra_namespace = local.namespace
+  app_domain         = var.app_fqdn
 }
 
 output "adn_app_url" {
@@ -99,7 +111,7 @@ output "adn_app_url" {
 | terraform | >= 0.12.9, != 0.13.0 |
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.0.5 |
+| volterra | 0.0.6 |
 
 ## Providers
 
@@ -107,7 +119,7 @@ output "adn_app_url" {
 |------|---------|
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.0.5 |
+| volterra | 0.0.6 |
 
 ## Inputs
 
