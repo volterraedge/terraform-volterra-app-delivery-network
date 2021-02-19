@@ -55,6 +55,7 @@ resource "volterra_http_loadbalancer" "this" {
   https_auto_cert {
     add_hsts      = var.enable_hsts
     http_redirect = var.enable_redirect
+    no_mtls       = true
   }
   waf {
     name      = volterra_waf.this.name

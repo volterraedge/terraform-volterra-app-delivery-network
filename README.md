@@ -81,7 +81,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.0.6"
+      version = "0.1.0"
     }
   }
 }
@@ -93,7 +93,7 @@ provider "volterra" {
 
 module "app-delivery-network" {
   source             = "volterraedge/app-delivery-network/volterra"
-  version            = "0.0.3"
+  version            = "0.1.0"
   adn_name           = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
@@ -111,7 +111,7 @@ output "adn_app_url" {
 | terraform | >= 0.12.9, != 0.13.0 |
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.0.6 |
+| volterra | 0.1.0 |
 
 ## Providers
 
@@ -119,7 +119,7 @@ output "adn_app_url" {
 |------|---------|
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.0.6 |
+| volterra | 0.1.0 |
 
 ## Inputs
 
