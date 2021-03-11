@@ -81,7 +81,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.1.0"
+      version = "0.2.1"
     }
   }
 }
@@ -93,7 +93,7 @@ provider "volterra" {
 
 module "app-delivery-network" {
   source             = "volterraedge/app-delivery-network/volterra"
-  version            = "0.1.0"
+  version            = "0.1.1"
   adn_name           = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
@@ -106,12 +106,14 @@ output "adn_app_url" {
 ---
 ## Requirements
 
+## Requirements
+
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.9, != 0.13.0 |
+| terraform | >= 0.13.1 |
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.1.0 |
+| volterra | 0.2.1 |
 
 ## Providers
 
@@ -119,7 +121,7 @@ output "adn_app_url" {
 |------|---------|
 | local | >= 2.0 |
 | null | >= 3.0 |
-| volterra | 0.1.0 |
+| volterra | 0.2.1 |
 
 ## Inputs
 
@@ -139,4 +141,3 @@ output "adn_app_url" {
 | Name | Description |
 |------|-------------|
 | app\_url | Domain VIP to access the application, running on ADN |
-
