@@ -93,7 +93,6 @@ provider "volterra" {
 
 module "app-delivery-network" {
   source             = "volterraedge/app-delivery-network/volterra"
-  version            = "0.1.1"
   adn_name           = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
