@@ -40,6 +40,11 @@ resource "volterra_waf" "this" {
   }
 }
 
+resource "volterra_app_type" "this" {
+  name      = var.app_type != "" ? var.app_type : var.adn_name
+  namespace = "shared"
+}
+
 resource "volterra_http_loadbalancer" "this" {
   name                            = format("%s-lb", var.adn_name)
   namespace                       = local.namespace

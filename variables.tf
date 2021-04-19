@@ -14,10 +14,14 @@ variable "volterra_namespace" {
   description = "Volterra app namespace where the object will be created. This cannot be system or shared ns."
 }
 
-
 variable "app_domain" {
   type        = string
   description = "FQDN for the app. If you have delegated domain `prod.example.com`, then your app_domain can be `<app_name>.prod.example.com`"
+}
+
+variable "app_type" {
+  type        = string
+  description = "Create a volterra app-type object in shared namespace"
 }
 
 variable "enable_hsts" {
