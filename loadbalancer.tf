@@ -41,7 +41,7 @@ resource "volterra_waf" "this" {
 }
 
 resource "volterra_app_type" "this" {
-  name      = var.app_type != "" ? var.app_type : var.adn_name
+  name      = var.app_type != "" ? var.app_type : local.namespace
   namespace = "shared"
 }
 
@@ -51,6 +51,9 @@ resource "volterra_http_loadbalancer" "this" {
   description                     = format("HTTPS loadbalancer object for %s origin server", var.adn_name)
   domains                         = [var.app_domain]
   advertise_on_public_default_vip = true
+  annotations {
+    "ves.io/app_type" = var.app_type != "" ? var.app_type : local.namespaces
+  }
   default_route_pools {
     pool {
       name      = volterra_origin_pool.this.name
