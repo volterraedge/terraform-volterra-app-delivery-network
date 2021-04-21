@@ -71,10 +71,15 @@ variable "namespace" {
   default = ""
 }
 
+variable "app_type" {
+  default = ""
+}
+
 variable "name" {}
 
 locals{
   namespace = var.namespace != "" ? var.namespace : var.name
+  app_type  = var.app_type != "" ? var.app_type : var.name
 }
 
 terraform {
@@ -96,6 +101,7 @@ module "app-delivery-network" {
   adn_name           = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
+  app_type           = var.app_type
 }
 
 output "adn_app_url" {
