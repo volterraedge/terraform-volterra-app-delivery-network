@@ -52,7 +52,7 @@ resource "volterra_http_loadbalancer" "this" {
   domains                         = [var.app_domain]
   advertise_on_public_default_vip = true
   annotations = {
-    "ves.io/app_type" = var.app_type != "" ? var.app_type : local.namespaces
+    "ves.io/app_type" = var.app_type != "" ? var.app_type : local.namespace
   }
   default_route_pools {
     pool {
