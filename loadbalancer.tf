@@ -51,7 +51,7 @@ resource "volterra_http_loadbalancer" "this" {
   description                     = format("HTTPS loadbalancer object for %s origin server", var.adn_name)
   domains                         = [var.app_domain]
   advertise_on_public_default_vip = true
-  annotations {
+  annotations = {
     "ves.io/app_type" = var.app_type != "" ? var.app_type : local.namespaces
   }
   default_route_pools {
