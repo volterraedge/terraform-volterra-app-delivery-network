@@ -43,3 +43,9 @@ variable "js_cookie_expiry" {
   description = "Javascript cookie expiry time in seconds"
   default     = 3600
 }
+
+variable "disable_js_challenge" {
+  type        = bool
+  description = "disable javascript challenge"
+  default     = false
+}
