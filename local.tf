@@ -4,9 +4,9 @@ locals {
     namespace           = local.namespace
     frontend_domain_url = "http://frontend:80"
   })
-  js_delay_list = var.disable_js_challenge ? [] :  [
+  js_delay_list = var.disable_js_challenge ? [] : [
     {
-      js_challenge {
+      {
         js_script_delay = var.js_script_delay
         cookie_expiry   = var.js_cookie_expiry
       }
