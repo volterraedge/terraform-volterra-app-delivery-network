@@ -70,7 +70,7 @@ resource "volterra_http_loadbalancer" "this" {
     for_each = local.js_delay_list
     content {
       js_script_delay = js_challenge.value["js_script_delay"]
-      cookie_expiry = js_challenge.value["cookie_expiry"]
+      cookie_expiry   = js_challenge.value["cookie_expiry"]
     }
   }
 }
