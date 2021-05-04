@@ -43,6 +43,23 @@ resource "volterra_waf" "this" {
 resource "volterra_app_type" "this" {
   name      = var.app_type != "" ? var.app_type : local.namespace
   namespace = "shared"
+  features  = [
+    {
+      type = "BUSINESS_LOGIC_MARKUP"
+    },
+    {
+      type = "TIMESERIES_ANOMALY_DETECTION"
+    },
+    {
+      type = "PER_REQ_ANOMALY_DETECTION"
+    },
+    {
+      type = "USER_BEHAVIOR_ANALYSIS"
+    }
+  ]
+  business_logic_markup_setting {
+    enable = true
+  }
 }
 
 resource "volterra_http_loadbalancer" "this" {
