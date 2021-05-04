@@ -43,7 +43,7 @@ resource "volterra_waf" "this" {
 resource "volterra_app_type" "this" {
   name      = var.app_type != "" ? var.app_type : local.namespace
   namespace = "shared"
-  features  = [
+  features = [
     {
       type = "BUSINESS_LOGIC_MARKUP"
     },
