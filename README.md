@@ -115,6 +115,8 @@ output "adn_app_url" {
 ```
 ---
 
+## Requirements
+
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
@@ -142,6 +144,63 @@ No modules.
 | [local_file.this_kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.apply_manifest](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [volterra_api_credential.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/api_credential) | resource |
+| [volterra_http_loadbalancer.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/http_loadbalancer) | resource |
+| [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/namespace) | resource |
+| [volterra_origin_pool.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/origin_pool) | resource |
+| [volterra_virtual_k8s.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/virtual_k8s) | resource |
+| [volterra_waf.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/waf) | resource |
+| [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/data-sources/namespace) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_adn_name"></a> [adn\_name](#input\_adn\_name) | ADN Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
+| <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
+| <a name="input_app_type"></a> [app\_type](#input\_app\_type) | Create a volterra app-type object in shared namespace | `string` | n/a | yes |
+| <a name="input_disable_js_challenge"></a> [disable\_js\_challenge](#input\_disable\_js\_challenge) | disable javascript challenge | `bool` | `false` | no |
+| <a name="input_enable_hsts"></a> [enable\_hsts](#input\_enable\_hsts) | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
+| <a name="input_enable_redirect"></a> [enable\_redirect](#input\_enable\_redirect) | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
+| <a name="input_js_cookie_expiry"></a> [js\_cookie\_expiry](#input\_js\_cookie\_expiry) | Javascript cookie expiry time in seconds | `number` | `3600` | no |
+| <a name="input_js_script_delay"></a> [js\_script\_delay](#input\_js\_script\_delay) | Javascript challenge delay in miliseconds | `number` | `5000` | no |
+| <a name="input_volterra_namespace"></a> [volterra\_namespace](#input\_volterra\_namespace) | Volterra app namespace where the object will be created. This cannot be system or shared ns. | `string` | n/a | yes |
+| <a name="input_volterra_namespace_exists"></a> [volterra\_namespace\_exists](#input\_volterra\_namespace\_exists) | Flag to create or use existing volterra namespace | `string` | `false` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_app_url"></a> [app\_url](#output\_app\_url) | Domain VIP to access the application, running on ADN |
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.0 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.0 |
+| <a name="requirement_volterra"></a> [volterra](#requirement\_volterra) | 0.4.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_local"></a> [local](#provider\_local) | >= 2.0 |
+| <a name="provider_null"></a> [null](#provider\_null) | >= 3.0 |
+| <a name="provider_volterra"></a> [volterra](#provider\_volterra) | 0.4.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [local_file.hipster_manifest](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.this_kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [null_resource.apply_manifest](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
+| [volterra_api_credential.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/api_credential) | resource |
+| [volterra_app_type.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/app_type) | resource |
 | [volterra_http_loadbalancer.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/http_loadbalancer) | resource |
 | [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/namespace) | resource |
 | [volterra_origin_pool.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/origin_pool) | resource |
