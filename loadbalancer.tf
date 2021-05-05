@@ -40,12 +40,36 @@ resource "volterra_waf" "this" {
   }
 }
 
+resource "volterra_app_type" "this" {
+  name      = var.app_type != "" ? var.app_type : local.namespace
+  namespace = "shared"
+  features {
+    type = "BUSINESS_LOGIC_MARKUP"
+  }
+  features {
+    type = "TIMESERIES_ANOMALY_DETECTION"
+  }
+  features {
+    type = "PER_REQ_ANOMALY_DETECTION"
+  }
+  features {
+    type = "USER_BEHAVIOR_ANALYSIS"
+  }
+
+  business_logic_markup_setting {
+    enable = true
+  }
+}
+
 resource "volterra_http_loadbalancer" "this" {
   name                            = format("%s-lb", var.adn_name)
   namespace                       = local.namespace
   description                     = format("HTTPS loadbalancer object for %s origin server", var.adn_name)
   domains                         = [var.app_domain]
   advertise_on_public_default_vip = true
+  labels = {
+    "ves.io/app_type" = var.app_type != "" ? var.app_type : local.namespace
+  }
   default_route_pools {
     pool {
       name      = volterra_origin_pool.this.name

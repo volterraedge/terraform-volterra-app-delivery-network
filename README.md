@@ -71,6 +71,10 @@ variable "namespace" {
   default = ""
 }
 
+variable "app_type" {
+  default = ""
+}
+
 variable "disable_js_challenge" {
   default = false
 }
@@ -79,6 +83,7 @@ variable "name" {}
 
 locals{
   namespace = var.namespace != "" ? var.namespace : var.name
+  app_type  = var.app_type != "" ? var.app_type : var.name
 }
 
 terraform {
@@ -100,6 +105,7 @@ module "app-delivery-network" {
   adn_name             = var.name
   volterra_namespace   = local.namespace
   app_domain           = var.app_fqdn
+  app_type             = var.app_type
   disable_js_challenge = var.disable_js_challenge
 }
 
@@ -108,6 +114,7 @@ output "adn_app_url" {
 }
 ```
 ---
+
 ## Requirements
 
 | Name | Version |
@@ -137,6 +144,7 @@ No modules.
 | [local_file.this_kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [null_resource.apply_manifest](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [volterra_api_credential.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/api_credential) | resource |
+| [volterra_app_type.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/app_type) | resource |
 | [volterra_http_loadbalancer.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/http_loadbalancer) | resource |
 | [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/namespace) | resource |
 | [volterra_origin_pool.this](https://registry.terraform.io/providers/volterraedge/volterra/0.4.0/docs/resources/origin_pool) | resource |
@@ -150,6 +158,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_adn_name"></a> [adn\_name](#input\_adn\_name) | ADN Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
 | <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
+| <a name="input_app_type"></a> [app\_type](#input\_app\_type) | Create a volterra app-type object in shared namespace | `string` | n/a | yes |
 | <a name="input_disable_js_challenge"></a> [disable\_js\_challenge](#input\_disable\_js\_challenge) | disable javascript challenge | `bool` | `false` | no |
 | <a name="input_enable_hsts"></a> [enable\_hsts](#input\_enable\_hsts) | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
 | <a name="input_enable_redirect"></a> [enable\_redirect](#input\_enable\_redirect) | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
