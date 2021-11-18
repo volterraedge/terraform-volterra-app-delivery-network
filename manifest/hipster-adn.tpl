@@ -506,22 +506,11 @@ spec:
       containers:
       - name: master
         image: k8s.gcr.io/redis:e2e  # or just image: redis
-        resources:
-          requests:
-            cpu: 100m
-            memory: 200Mi
         ports:
         - containerPort: 6379
         volumeMounts:
         - mountPath: /data
           name: redis-data
-        resources:
-          limits:
-            memory: 256Mi
-            cpu: 125m
-          requests:
-            cpu: 70m
-            memory: 200Mi
       volumes:
       - name: redis-data
         emptyDir: {}
