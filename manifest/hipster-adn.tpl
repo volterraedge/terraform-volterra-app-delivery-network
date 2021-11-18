@@ -191,7 +191,7 @@ spec:
         - containerPort: 7070
         env:
         - name: REDIS_ADDR
-          value: "redis-cart:6379"
+          value: "redis-cart.internal:6379"
         - name: PORT
           value: "7070"
         - name: LISTEN_ADDR
@@ -451,7 +451,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: madhukar32/hipster-frontend:latest
+          image: gcr.io/solutions-team-280017/hipster-frontend:latest
           ports:
           - containerPort: 8080
           env:
