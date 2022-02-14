@@ -48,7 +48,7 @@ resource "volterra_http_loadbalancer" "this" {
     no_mtls       = true
   }
   waf {
-    name      = volterra_waf.this.name
+    name      = volterra_app_firewall.this.name
     namespace = local.namespace
   }
   disable_waf                     = false
