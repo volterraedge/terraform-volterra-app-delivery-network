@@ -47,7 +47,7 @@ resource "volterra_http_loadbalancer" "this" {
     http_redirect = var.enable_redirect
     no_mtls       = true
   }
-  waf {
+  app_firewall {
     name      = volterra_app_firewall.this.name
     namespace = local.namespace
   }
