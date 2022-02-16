@@ -24,9 +24,9 @@ resource "volterra_origin_pool" "this" {
 }
 
 resource "volterra_app_firewall" "this" {
-  name        = format("%s-waf", var.adn_name)
-  description = format("WAF in block mode for %s", var.adn_name)
-  namespace   = local.namespace
+  name                     = format("%s-waf", var.adn_name)
+  description              = format("WAF in block mode for %s", var.adn_name)
+  namespace                = local.namespace
   allow_all_response_codes = true
 }
 
