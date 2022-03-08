@@ -49,3 +49,9 @@ variable "disable_js_challenge" {
   description = "disable javascript challenge"
   default     = false
 }
+
+variable "blocking" {
+  type        = bool
+  description = "Enable blocking mode for app_firewall"
+  default     = true
+}

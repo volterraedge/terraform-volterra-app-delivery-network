@@ -31,6 +31,7 @@ resource "volterra_virtual_k8s" "this" {
 resource "volterra_api_credential" "this" {
   name                  = substr(volterra_virtual_k8s.this.id, 1, 30)
   api_credential_type   = "KUBE_CONFIG"
+  expiry_days           = 10
   virtual_k8s_namespace = local.namespace
   virtual_k8s_name      = format("%s-vk8s", var.adn_name)
   lifecycle {
