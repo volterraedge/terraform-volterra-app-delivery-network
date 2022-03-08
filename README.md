@@ -149,6 +149,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_adn_name"></a> [adn\_name](#input\_adn\_name) | ADN Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
 | <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
+| <a name="input_blocking"></a> [blocking](#input\_blocking) | Enable blocking mode for app\_firewall | `bool` | `true` | no |
 | <a name="input_disable_js_challenge"></a> [disable\_js\_challenge](#input\_disable\_js\_challenge) | disable javascript challenge | `bool` | `false` | no |
 | <a name="input_enable_hsts"></a> [enable\_hsts](#input\_enable\_hsts) | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
 | <a name="input_enable_redirect"></a> [enable\_redirect](#input\_enable\_redirect) | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
