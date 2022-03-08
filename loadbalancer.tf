@@ -28,7 +28,7 @@ resource "volterra_app_firewall" "this" {
   description              = format("WAF in block mode for %s", var.adn_name)
   namespace                = local.namespace
   allow_all_response_codes = true
-  blocking                 = true
+  blocking                 = var.blocking
 }
 
 resource "volterra_http_loadbalancer" "this" {
