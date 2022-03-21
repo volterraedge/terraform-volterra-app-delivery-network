@@ -9,7 +9,7 @@ This is a terraform module to create Volterra's Application Delivery Network use
 
 ## Overview
 
-![Image of ADN Usecase](https://volterra.io/static/15a56da8dbb948319f81c4d99cc36cea/3353d/top-nea-new.webp)
+![Image of ADN Usecase](https://docs.cloud.f5.com/docs/static/009e46edc55ec9294075d9acf2a823c0/ab7d4/seq-nea.webp)
 
 ---
 
@@ -43,9 +43,11 @@ This is a terraform module to create Volterra's Application Delivery Network use
   $ brew upgrade hashicorp/tap/terraform
   ```
 
-* Export the API certificate password as environment variable, this is needed for volterra provider to work
+* Export the API certificate password, path to your local p12 file and your api url as environment variables, this is needed for volterra provider to work
   ```bash
   export VES_P12_PASSWORD=<your credential password>
+  export VOLT_API_P12_FILE=<path to your local p12 file>
+  export VOLT_API_URL=<team or org tenant api url>
   ```
 
 ---
@@ -90,11 +92,6 @@ terraform {
   }
 }
 
-provider "volterra" {
-  api_p12_file = var.api_p12_file
-  url          = var.api_url
-}
-
 module "app-delivery-network" {
   source               = "volterraedge/app-delivery-network/volterra"
   adn_name             = var.name
@@ -107,6 +104,8 @@ output "adn_app_url" {
   value = module.app-delivery-network.app_url
 }
 ```
+---
+
 ## Requirements
 
 | Name | Version |
